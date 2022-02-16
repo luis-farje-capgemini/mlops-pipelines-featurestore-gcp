@@ -4,6 +4,7 @@
 It's needed a GCP project on the Google Cloud Platform.
 Login into: https://console.cloud.google.com/home/ 
 
+These MLOps pipelines are using Kubeflow and Feature Store
 
 The data used for this project is **public** and here is the link: 
 https://www.kaggle.com/prajitdatta/movielens-100k-dataset 
