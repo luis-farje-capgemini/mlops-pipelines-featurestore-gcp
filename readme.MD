@@ -8,12 +8,16 @@ Login into: https://console.cloud.google.com/home/
 The data used for this project is **public** and here is the link: 
 https://www.kaggle.com/prajitdatta/movielens-100k-dataset 
 
-GCP services used:
 
-Google Vertex AI
-Notebooks API
-Google Cloud Storage
+### GCP services used:
 
+1. Google Vertex AI
+2. Notebooks API
+3. Google Cloud Storage
+
+### Once GCP project is ready to use, it's need to enable this features/services:
+
+abc
 
 **Authors:**
 
