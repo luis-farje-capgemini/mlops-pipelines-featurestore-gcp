@@ -10,15 +10,18 @@ The data used for this project is **public** and here is the link:
 https://www.kaggle.com/prajitdatta/movielens-100k-dataset 
 
 
-### GCP services used:
+### GCP services to be enabled/used:
 
 1. Google Vertex AI
 2. Notebooks API
 3. Google Cloud Storage
+4. Google Deployment Manager API
 
-### Once GCP project is ready to use, it's need to enable this features/services:
+### Steps:
 
-abc
+**Note:** Important to configure/install Google SDK previously and deploy all resources on same region (for example: europe-west3 - Frankfurt)
+
+1. Deploy workbench Vertex AI
 
 **Authors:**
 

@@ -1,4 +1,8 @@
-
+# done by Lucho Farje
 
 imports:
 - path: workbench-datascience.jinja
+
+resources:
+- name: vm-created-by-deployment-manager
+  type: vm-template.jinja
