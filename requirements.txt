@@ -1,0 +1,11 @@
+dataclasses==0.6
+google-cloud-aiplatform==1.8.1
+google-cloud-pipeline-components
+kfp
+numpy
+fastapi
+google-cloud-bigquery==2.20.0
+google-cloud-pubsub=2.5.0
+tensorflow==2.5.0
+pillow==9.0.0
+tf-agents==0.8.0
