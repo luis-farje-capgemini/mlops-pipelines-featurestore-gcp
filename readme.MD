@@ -21,6 +21,8 @@ https://www.kaggle.com/prajitdatta/movielens-100k-dataset
 
 **Note:** Important to configure/install Google SDK previously and deploy all resources on same region (for example: europe-west3 - Frankfurt)
 
+
+
 1. Deploy workbench Vertex AI
 
 **Authors:**
