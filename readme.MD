@@ -25,6 +25,8 @@ https://www.kaggle.com/prajitdatta/movielens-100k-dataset
 
 1. Deploy workbench Vertex AI
 
+![alt text](./pics/workbenchconf.png)
+
 **Authors:**
 
 * Lucho Farje
