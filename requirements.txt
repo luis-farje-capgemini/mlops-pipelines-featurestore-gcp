@@ -6,6 +6,6 @@ numpy
 fastapi
 google-cloud-bigquery==2.20.0
 google-cloud-pubsub==2.5.0
-tensorflow==2.5.0
+tensorflow==2.5.3
 pillow==9.0.0
 tf-agents==0.8.0
