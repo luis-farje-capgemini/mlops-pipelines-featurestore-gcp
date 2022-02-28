@@ -1,0 +1,933 @@
+{
+  "pipelineSpec": {
+    "components": {
+      "comp-endpoint-create": {
+        "executorLabel": "exec-endpoint-create",
+        "inputDefinitions": {
+          "parameters": {
+            "project": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "endpoint": {
+              "artifactType": {
+                "schemaTitle": "system.Artifact",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          }
+        }
+      },
+      "comp-generate-movielens-dataset-for-bigquery": {
+        "executorLabel": "exec-generate-movielens-dataset-for-bigquery",
+        "inputDefinitions": {
+          "parameters": {
+            "batch_size": {
+              "type": "INT"
+            },
+            "bigquery_dataset_id": {
+              "type": "STRING"
+            },
+            "bigquery_location": {
+              "type": "STRING"
+            },
+            "bigquery_table_id": {
+              "type": "STRING"
+            },
+            "bigquery_tmp_file": {
+              "type": "STRING"
+            },
+            "driver_steps": {
+              "type": "INT"
+            },
+            "feature_id": {
+              "type": "STRING"
+            },
+            "num_actions": {
+              "type": "INT"
+            },
+            "project_id": {
+              "type": "STRING"
+            },
+            "rank_k": {
+              "type": "INT"
+            },
+            "raw_data_path": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "bigquery_dataset_id": {
+              "type": "STRING"
+            },
+            "bigquery_location": {
+              "type": "STRING"
+            },
+            "bigquery_table_id": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-import-feature-values": {
+        "executorLabel": "exec-import-feature-values",
+        "inputDefinitions": {
+          "parameters": {
+            "api_endpoint": {
+              "type": "STRING"
+            },
+            "bigquery_table_id": {
+              "type": "STRING"
+            },
+            "bigquery_uri": {
+              "type": "STRING"
+            },
+            "entity_id_field": {
+              "type": "STRING"
+            },
+            "entity_type_id": {
+              "type": "STRING"
+            },
+            "featurestore_id": {
+              "type": "STRING"
+            },
+            "location": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "timeout": {
+              "type": "INT"
+            },
+            "worker_count": {
+              "type": "INT"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "featurestore_id": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-ingest-bigquery-dataset-into-tfrecord": {
+        "executorLabel": "exec-ingest-bigquery-dataset-into-tfrecord",
+        "inputDefinitions": {
+          "parameters": {
+            "bigquery_max_rows": {
+              "type": "INT"
+            },
+            "bigquery_table_id": {
+              "type": "STRING"
+            },
+            "project_id": {
+              "type": "STRING"
+            },
+            "tfrecord_file": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "tfrecord_file": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-load-raw-data-to-bigquery": {
+        "executorLabel": "exec-load-raw-data-to-bigquery",
+        "inputDefinitions": {
+          "parameters": {
+            "bigquery_dataset_id": {
+              "type": "STRING"
+            },
+            "bigquery_location": {
+              "type": "STRING"
+            },
+            "bigquery_table_id": {
+              "type": "STRING"
+            },
+            "project_id": {
+              "type": "STRING"
+            },
+            "raw_data_path": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "bigquery_table_id": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-model-deploy": {
+        "executorLabel": "exec-model-deploy",
+        "inputDefinitions": {
+          "artifacts": {
+            "endpoint": {
+              "artifactType": {
+                "schemaTitle": "system.Artifact",
+                "schemaVersion": "0.0.1"
+              }
+            },
+            "model": {
+              "artifactType": {
+                "schemaTitle": "system.Model",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          },
+          "parameters": {
+            "project": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "endpoint": {
+              "artifactType": {
+                "schemaTitle": "system.Artifact",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          }
+        }
+      },
+      "comp-model-upload": {
+        "executorLabel": "exec-model-upload",
+        "inputDefinitions": {
+          "parameters": {
+            "artifact_uri": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "model": {
+              "artifactType": {
+                "schemaTitle": "system.Model",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          }
+        }
+      },
+      "comp-training-op": {
+        "executorLabel": "exec-training-op",
+        "inputDefinitions": {
+          "parameters": {
+            "agent_alpha": {
+              "type": "DOUBLE"
+            },
+            "num_actions": {
+              "type": "INT"
+            },
+            "num_epochs": {
+              "type": "INT"
+            },
+            "rank_k": {
+              "type": "INT"
+            },
+            "tfrecord_file": {
+              "type": "STRING"
+            },
+            "tikhonov_weight": {
+              "type": "DOUBLE"
+            },
+            "training_artifacts_dir": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "training_artifacts_dir": {
+              "artifactType": {
+                "schemaTitle": "system.Artifact",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "deploymentSpec": {
+      "executors": {
+        "exec-endpoint-create": {
+          "container": {
+            "args": [
+              "--method.location",
+              "europe-west1",
+              "--method.display_name",
+              "movielens-endpoint",
+              "--executor_input",
+              "{{$}}",
+              "--resource_name_output_artifact_uri",
+              "{{$.outputs.artifacts['endpoint'].uri}}",
+              "--method.project",
+              "{{$.inputs.parameters['project']}}"
+            ],
+            "command": [
+              "python3",
+              "-m",
+              "google_cloud_pipeline_components.aiplatform.remote_runner",
+              "--cls_name",
+              "Endpoint",
+              "--method_name",
+              "create"
+            ],
+            "image": "gcr.io/ml-pipeline/google-cloud-pipeline-components:0.1.3"
+          }
+        },
+        "exec-generate-movielens-dataset-for-bigquery": {
+          "container": {
+            "args": [
+              "--project-id",
+              "{{$.inputs.parameters['project_id']}}",
+              "--raw-data-path",
+              "{{$.inputs.parameters['raw_data_path']}}",
+              "--batch-size",
+              "{{$.inputs.parameters['batch_size']}}",
+              "--rank-k",
+              "{{$.inputs.parameters['rank_k']}}",
+              "--num-actions",
+              "{{$.inputs.parameters['num_actions']}}",
+              "--driver-steps",
+              "{{$.inputs.parameters['driver_steps']}}",
+              "--bigquery-tmp-file",
+              "{{$.inputs.parameters['bigquery_tmp_file']}}",
+              "--bigquery-dataset-id",
+              "{{$.inputs.parameters['bigquery_dataset_id']}}",
+              "--bigquery-location",
+              "{{$.inputs.parameters['bigquery_location']}}",
+              "--bigquery-table-id",
+              "{{$.inputs.parameters['bigquery_table_id']}}",
+              "--feature-id",
+              "{{$.inputs.parameters['feature_id']}}",
+              "----output-paths",
+              "{{$.outputs.parameters['bigquery_dataset_id'].output_file}}",
+              "{{$.outputs.parameters['bigquery_location'].output_file}}",
+              "{{$.outputs.parameters['bigquery_table_id'].output_file}}"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "(PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-bigquery==2.20.0' 'tensorflow==2.5.0' 'Image' 'tf-agents==0.8.0' || PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-bigquery==2.20.0' 'tensorflow==2.5.0' 'Image' 'tf-agents==0.8.0' --user) && \"$0\" \"$@\"",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp)\nprintf \"%s\" \"$0\" > \"$program_path\"\npython3 -u \"$program_path\" \"$@\"\n",
+              "def generate_movielens_dataset_for_bigquery(\n    project_id,\n    raw_data_path,\n    batch_size,\n    rank_k,\n    num_actions,\n    driver_steps,\n    bigquery_tmp_file,\n    bigquery_dataset_id,\n    bigquery_location,\n    bigquery_table_id,\n    feature_id\n):\n\n  # pylint: disable=g-import-not-at-top\n  import collections\n  import json\n  from typing import Any, Dict\n\n  from google.cloud import bigquery\n\n  from tf_agents import replay_buffers\n  from tf_agents import trajectories\n  from tf_agents.bandits.agents.examples.v2 import trainer\n  from tf_agents.bandits.environments import movielens_py_environment\n  from tf_agents.drivers import dynamic_step_driver\n  from tf_agents.environments import tf_py_environment\n  from tf_agents.policies import random_tf_policy\n\n  def generate_simulation_data(\n      raw_data_path,\n      batch_size,\n      rank_k,\n      num_actions,\n      driver_steps):\n\n    # Create movielens simulation environment.\n    env = movielens_py_environment.MovieLensPyEnvironment(\n        raw_data_path,\n        rank_k,\n        batch_size,\n        num_movies=num_actions,\n        csv_delimiter=\"\\t\")\n    environment = tf_py_environment.TFPyEnvironment(env)\n\n    # Define random policy for collecting data.\n    random_policy = random_tf_policy.RandomTFPolicy(\n        action_spec=environment.action_spec(),\n        time_step_spec=environment.time_step_spec())\n\n    # Use replay buffer and observers to keep track of Trajectory data.\n    data_spec = random_policy.trajectory_spec\n    replay_buffer = trainer.get_replay_buffer(data_spec, environment.batch_size,\n                                              driver_steps)\n    observers = [replay_buffer.add_batch]\n\n    # Run driver to apply the random policy in the simulation environment.\n    driver = dynamic_step_driver.DynamicStepDriver(\n        env=environment,\n        policy=random_policy,\n        num_steps=driver_steps * environment.batch_size,\n        observers=observers)\n    driver.run()\n\n    return replay_buffer\n\n  def build_dict_from_trajectory(\n      trajectory):\n\n    trajectory_dict = {\n        \"step_type\": trajectory.step_type.numpy().tolist(),\n        \"observation\": [{\n            \"observation_batch\": batch\n        } for batch in trajectory.observation.numpy().tolist()],\n        \"action\": trajectory.action.numpy().tolist(),\n        \"policy_info\": trajectory.policy_info,\n        \"next_step_type\": trajectory.next_step_type.numpy().tolist(),\n        \"reward\": trajectory.reward.numpy().tolist(),\n        \"discount\": trajectory.discount.numpy().tolist(),\n    }\n    return trajectory_dict\n\n  def write_replay_buffer_to_file(\n      replay_buffer,\n      batch_size,\n      dataset_file):\n\n    dataset = replay_buffer.as_dataset(sample_batch_size=batch_size)\n    dataset_size = replay_buffer.num_frames().numpy()\n\n    with open(dataset_file, \"w\") as f:\n      for example in dataset.take(count=dataset_size):\n        traj_dict = build_dict_from_trajectory(example[0])\n        f.write(json.dumps(traj_dict) + \"\\n\")\n\n  def load_dataset_into_bigquery(\n      project_id,\n      dataset_file,\n      bigquery_dataset_id,\n      bigquery_location,\n      bigquery_table_id):\n\n    # Construct a BigQuery client object.\n    client = bigquery.Client(project=project_id)\n\n    # Construct a full Dataset object to send to the API.\n    dataset = bigquery.Dataset(bigquery_dataset_id)\n\n    # Specify the geographic location where the dataset should reside.\n    dataset.location = bigquery_location\n\n    # Create the dataset, or get the dataset if it exists.\n    dataset = client.create_dataset(dataset, exists_ok=True, timeout=30)\n\n    job_config = bigquery.LoadJobConfig(\n        schema=[\n            bigquery.SchemaField(\"step_type\", \"INT64\", mode=\"REPEATED\"),\n            bigquery.SchemaField(\n                \"observation\",\n                \"RECORD\",\n                mode=\"REPEATED\",\n                fields=[\n                    bigquery.SchemaField(\"observation_batch\", \"FLOAT64\",\n                                         \"REPEATED\")\n                ]),\n            bigquery.SchemaField(\"action\", \"INT64\", mode=\"REPEATED\"),\n            bigquery.SchemaField(\"policy_info\", \"FLOAT64\", mode=\"REPEATED\"),\n            bigquery.SchemaField(\"next_step_type\", \"INT64\", mode=\"REPEATED\"),\n            bigquery.SchemaField(\"reward\", \"FLOAT64\", mode=\"REPEATED\"),\n            bigquery.SchemaField(\"discount\", \"FLOAT64\", mode=\"REPEATED\"),\n        ],\n        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,\n    )\n\n    with open(dataset_file, \"rb\") as source_file:\n      load_job = client.load_table_from_file(\n          source_file, bigquery_table_id, job_config=job_config)\n\n    load_job.result()  # Wait for the job to complete.\n\n  replay_buffer = generate_simulation_data(\n      raw_data_path=raw_data_path,\n      batch_size=batch_size,\n      rank_k=rank_k,\n      num_actions=num_actions,\n      driver_steps=driver_steps)\n\n  write_replay_buffer_to_file(\n      replay_buffer=replay_buffer,\n      batch_size=batch_size,\n      dataset_file=bigquery_tmp_file)\n\n  load_dataset_into_bigquery(project_id, bigquery_tmp_file, bigquery_dataset_id,\n                             bigquery_location, bigquery_table_id)\n\n  outputs = collections.namedtuple(\n      \"Outputs\",\n      [\"bigquery_dataset_id\", \"bigquery_location\", \"bigquery_table_id\"])\n\n  return outputs(bigquery_dataset_id, bigquery_location, bigquery_table_id)\n\ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser = argparse.ArgumentParser(prog='Generate movielens dataset for bigquery', description='')\n_parser.add_argument(\"--project-id\", dest=\"project_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--raw-data-path\", dest=\"raw_data_path\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--batch-size\", dest=\"batch_size\", type=int, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--rank-k\", dest=\"rank_k\", type=int, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--num-actions\", dest=\"num_actions\", type=int, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--driver-steps\", dest=\"driver_steps\", type=int, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-tmp-file\", dest=\"bigquery_tmp_file\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-dataset-id\", dest=\"bigquery_dataset_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-location\", dest=\"bigquery_location\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-table-id\", dest=\"bigquery_table_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--feature-id\", dest=\"feature_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\", dest=\"_output_paths\", type=str, nargs=3)\n_parsed_args = vars(_parser.parse_args())\n_output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs = generate_movielens_dataset_for_bigquery(**_parsed_args)\n\n_output_serializers = [\n    _serialize_str,\n    _serialize_str,\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n    except OSError:\n        pass\n    with open(output_file, 'w') as f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+            ],
+            "image": "tensorflow/tensorflow:2.5.0"
+          }
+        },
+        "exec-import-feature-values": {
+          "container": {
+            "args": [
+              "--project",
+              "{{$.inputs.parameters['project']}}",
+              "--featurestore-id",
+              "{{$.inputs.parameters['featurestore_id']}}",
+              "--entity-type-id",
+              "{{$.inputs.parameters['entity_type_id']}}",
+              "--bigquery-uri",
+              "{{$.inputs.parameters['bigquery_uri']}}",
+              "--entity-id-field",
+              "{{$.inputs.parameters['entity_id_field']}}",
+              "--bigquery-table-id",
+              "{{$.inputs.parameters['bigquery_table_id']}}",
+              "--worker-count",
+              "{{$.inputs.parameters['worker_count']}}",
+              "--location",
+              "{{$.inputs.parameters['location']}}",
+              "--api-endpoint",
+              "{{$.inputs.parameters['api_endpoint']}}",
+              "--timeout",
+              "{{$.inputs.parameters['timeout']}}",
+              "----output-paths",
+              "{{$.outputs.parameters['featurestore_id'].output_file}}"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "(PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-aiplatform' || PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-aiplatform' --user) && \"$0\" \"$@\"",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp)\nprintf \"%s\" \"$0\" > \"$program_path\"\npython3 -u \"$program_path\" \"$@\"\n",
+              "def import_feature_values(\n    project,\n    featurestore_id,\n    entity_type_id,\n    bigquery_uri,\n    entity_id_field,\n    bigquery_table_id,\n    worker_count = 1,\n    location = \"europe-west3\",\n    api_endpoint = \"europe-west3-aiplatform.googleapis.com\",\n    timeout = 500): \n    import collections\n    import datetime\n    from google.cloud import aiplatform\n    from google.protobuf.timestamp_pb2 import Timestamp\n    time_now = datetime.datetime.now().timestamp()\n    seconds = int(time_now)\n    proto_timestamp = Timestamp(seconds=seconds)\n    client_options = {\"api_endpoint\": api_endpoint}\n\n    client = aiplatform.gapic.FeaturestoreServiceClient(client_options=client_options)\n    entity_type = f\"projects/{project}/locations/{location}/featurestores/{featurestore_id}/entityTypes/{entity_type_id}\"\n    entity_id_field=\"user_id\"\n\n    bigquery_source = aiplatform.gapic.BigQuerySource(input_uri=bigquery_uri)\n\n    feature_specs = [\n        aiplatform.gapic.ImportFeatureValuesRequest.FeatureSpec(id=\"user_id\"),\n        aiplatform.gapic.ImportFeatureValuesRequest.FeatureSpec(id=\"item_id\"),\n        aiplatform.gapic.ImportFeatureValuesRequest.FeatureSpec(id=\"rating\"),\n        aiplatform.gapic.ImportFeatureValuesRequest.FeatureSpec(id=\"timestamp\"),\n    ]\n    import_feature_values_request = aiplatform.gapic.ImportFeatureValuesRequest(\n        entity_type=entity_type,\n        bigquery_source=bigquery_source,\n        feature_specs=feature_specs,\n        entity_id_field=entity_id_field,\n        feature_time=proto_timestamp,\n        worker_count=worker_count,\n        disable_online_serving=True\n    )\n    lro_response = client.import_feature_values(request=import_feature_values_request)\n    print(\"Long running operation:\", lro_response.operation.name)\n    import_feature_values_response = lro_response.result(timeout=timeout)\n    print(\"import_feature_values_response:\", import_feature_values_response)\n\n    outputs = collections.namedtuple(\n      \"Outputs\",\n      [\"featurestore_id\"])\n\n    return outputs(featurestore_id)\n\ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser = argparse.ArgumentParser(prog='Import feature values', description='')\n_parser.add_argument(\"--project\", dest=\"project\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--featurestore-id\", dest=\"featurestore_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--entity-type-id\", dest=\"entity_type_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-uri\", dest=\"bigquery_uri\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--entity-id-field\", dest=\"entity_id_field\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-table-id\", dest=\"bigquery_table_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--worker-count\", dest=\"worker_count\", type=int, required=False, default=argparse.SUPPRESS)\n_parser.add_argument(\"--location\", dest=\"location\", type=str, required=False, default=argparse.SUPPRESS)\n_parser.add_argument(\"--api-endpoint\", dest=\"api_endpoint\", type=str, required=False, default=argparse.SUPPRESS)\n_parser.add_argument(\"--timeout\", dest=\"timeout\", type=int, required=False, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\", dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n_output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs = import_feature_values(**_parsed_args)\n\n_output_serializers = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n    except OSError:\n        pass\n    with open(output_file, 'w') as f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+            ],
+            "image": "python:3.7"
+          }
+        },
+        "exec-ingest-bigquery-dataset-into-tfrecord": {
+          "container": {
+            "args": [
+              "--project-id",
+              "{{$.inputs.parameters['project_id']}}",
+              "--bigquery-table-id",
+              "{{$.inputs.parameters['bigquery_table_id']}}",
+              "--tfrecord-file",
+              "{{$.inputs.parameters['tfrecord_file']}}",
+              "--bigquery-max-rows",
+              "{{$.inputs.parameters['bigquery_max_rows']}}",
+              "----output-paths",
+              "{{$.outputs.parameters['tfrecord_file'].output_file}}"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "(PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-bigquery==2.20.0' 'tensorflow==2.5.0' || PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-bigquery==2.20.0' 'tensorflow==2.5.0' --user) && \"$0\" \"$@\"",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp)\nprintf \"%s\" \"$0\" > \"$program_path\"\npython3 -u \"$program_path\" \"$@\"\n",
+              "def ingest_bigquery_dataset_into_tfrecord(\n    project_id,\n    bigquery_table_id,\n    tfrecord_file,\n    bigquery_max_rows = None\n):\n\n  # pylint: disable=g-import-not-at-top\n  import collections\n  from typing import Optional\n\n  from google.cloud import bigquery\n\n  import tensorflow as tf\n  import logging\n\n  def read_data_from_bigquery(\n      project_id,\n      bigquery_table_id,\n      bigquery_max_rows):\n\n    # Construct a BigQuery client object.\n    client = bigquery.Client(project=project_id)\n\n    # Get dataset.\n    query_job = client.query(\n        f\"\"\"\n        SELECT * FROM `{bigquery_table_id}`\n        \"\"\"\n    )\n    table = query_job.result(max_results=bigquery_max_rows)\n\n    return table\n\n  def _bytes_feature(tensor):\n\n    value = tf.io.serialize_tensor(tensor)\n    if isinstance(value, type(tf.constant(0))):\n      value = value.numpy()\n    return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))\n\n  def build_example(data_row):\n    feature = {\n        \"step_type\":\n            _bytes_feature(data_row.get(\"step_type\")),\n        \"observation\":\n            _bytes_feature([\n                observation[\"observation_batch\"]\n                for observation in data_row.get(\"observation\")\n            ]),\n        \"action\":\n            _bytes_feature(data_row.get(\"action\")),\n        \"policy_info\":\n            _bytes_feature(data_row.get(\"policy_info\")),\n        \"next_step_type\":\n            _bytes_feature(data_row.get(\"next_step_type\")),\n        \"reward\":\n            _bytes_feature(data_row.get(\"reward\")),\n        \"discount\":\n            _bytes_feature(data_row.get(\"discount\")),\n    }\n\n    example_proto = tf.train.Example(\n        features=tf.train.Features(feature=feature))\n    return example_proto\n\n  def write_tfrecords(\n      tfrecord_file,\n      table):\n\n    with tf.io.TFRecordWriter(tfrecord_file) as writer:\n      for data_row in table:\n        example = build_example(data_row)\n        writer.write(example.SerializeToString())\n\n  table = read_data_from_bigquery(\n      project_id=project_id,\n      bigquery_table_id=bigquery_table_id,\n      bigquery_max_rows=bigquery_max_rows)\n\n  logging.info(\"writing records------------------\")\n\n  write_tfrecords(tfrecord_file, table)\n\n  outputs = collections.namedtuple(\n      \"Outputs\",\n      [\"tfrecord_file\"])\n  logging.info(outputs)\n\n  return outputs(tfrecord_file)\n\ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser = argparse.ArgumentParser(prog='Ingest bigquery dataset into tfrecord', description='')\n_parser.add_argument(\"--project-id\", dest=\"project_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-table-id\", dest=\"bigquery_table_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--tfrecord-file\", dest=\"tfrecord_file\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-max-rows\", dest=\"bigquery_max_rows\", type=int, required=False, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\", dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n_output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs = ingest_bigquery_dataset_into_tfrecord(**_parsed_args)\n\n_output_serializers = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n    except OSError:\n        pass\n    with open(output_file, 'w') as f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+            ],
+            "image": "tensorflow/tensorflow:2.5.0"
+          }
+        },
+        "exec-load-raw-data-to-bigquery": {
+          "container": {
+            "args": [
+              "--project-id",
+              "{{$.inputs.parameters['project_id']}}",
+              "--raw-data-path",
+              "{{$.inputs.parameters['raw_data_path']}}",
+              "--bigquery-dataset-id",
+              "{{$.inputs.parameters['bigquery_dataset_id']}}",
+              "--bigquery-location",
+              "{{$.inputs.parameters['bigquery_location']}}",
+              "--bigquery-table-id",
+              "{{$.inputs.parameters['bigquery_table_id']}}",
+              "----output-paths",
+              "{{$.outputs.parameters['bigquery_table_id'].output_file}}"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "(PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-bigquery==2.20.0' || PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'google-cloud-bigquery==2.20.0' --user) && \"$0\" \"$@\"",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp)\nprintf \"%s\" \"$0\" > \"$program_path\"\npython3 -u \"$program_path\" \"$@\"\n",
+              "def load_raw_data_to_bigquery(\n    project_id,\n    raw_data_path,\n    bigquery_dataset_id,\n    bigquery_location,\n    bigquery_table_id,\n):\n\n  import collections\n  from google.cloud import bigquery\n  import logging\n\n  def load_raw_dataset(\n      project_id,\n      bigquery_dataset_id,\n      bigquery_location,\n      raw_data_path,\n      bigquery_table_id):\n\n        client = bigquery.Client(project=project_id)\n        dataset = bigquery.Dataset(bigquery_dataset_id)\n        dataset.location = bigquery_location\n        dataset = client.create_dataset(dataset, exists_ok=True, timeout=30)\n\n        bigquery_table_id = bigquery_table_id\n        job_config = bigquery.LoadJobConfig(\n            schema=[\n                bigquery.SchemaField(\"item_id\", \"STRING\"),\n                bigquery.SchemaField(\"user_id\", \"STRING\"),\n                bigquery.SchemaField(\"rating\", \"STRING\"),\n                bigquery.SchemaField(\"timestamp\", \"STRING\"),\n            ],\n            source_format=bigquery.SourceFormat.CSV,\n            create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,\n            write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,\n            field_delimiter=\"\\t\",\n        )\n        uri = raw_data_path\n\n        load_job = client.load_table_from_uri(\n            uri, bigquery_table_id, job_config=job_config\n        )  \n        res = load_job.result()  \n        logging.info(res)\n        destination_table = client.get_table(bigquery_table_id) \n        logging.info(\"Loaded {} rows.\".format(destination_table.num_rows))\n\n  load_raw_dataset(project_id,bigquery_dataset_id, bigquery_location, raw_data_path, bigquery_table_id)\n\n  outputs = collections.namedtuple(\n      \"Outputs\",\n      [\"bigquery_table_id\"])\n\n  return outputs(bigquery_table_id)\n\ndef _serialize_str(str_value: str) -> str:\n    if not isinstance(str_value, str):\n        raise TypeError('Value \"{}\" has type \"{}\" instead of str.'.format(\n            str(str_value), str(type(str_value))))\n    return str_value\n\nimport argparse\n_parser = argparse.ArgumentParser(prog='Load raw data to bigquery', description='')\n_parser.add_argument(\"--project-id\", dest=\"project_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--raw-data-path\", dest=\"raw_data_path\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-dataset-id\", dest=\"bigquery_dataset_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-location\", dest=\"bigquery_location\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"--bigquery-table-id\", dest=\"bigquery_table_id\", type=str, required=True, default=argparse.SUPPRESS)\n_parser.add_argument(\"----output-paths\", dest=\"_output_paths\", type=str, nargs=1)\n_parsed_args = vars(_parser.parse_args())\n_output_files = _parsed_args.pop(\"_output_paths\", [])\n\n_outputs = load_raw_data_to_bigquery(**_parsed_args)\n\n_output_serializers = [\n    _serialize_str,\n\n]\n\nimport os\nfor idx, output_file in enumerate(_output_files):\n    try:\n        os.makedirs(os.path.dirname(output_file))\n    except OSError:\n        pass\n    with open(output_file, 'w') as f:\n        f.write(_output_serializers[idx](_outputs[idx]))\n"
+            ],
+            "image": "python:3.7"
+          }
+        },
+        "exec-model-deploy": {
+          "container": {
+            "args": [
+              "--method.deployed_model_display_name",
+              "movielens-trained-policy",
+              "--method.machine_type",
+              "n1-standard-4",
+              "--executor_input",
+              "{{$}}",
+              "--resource_name_output_artifact_uri",
+              "{{$.outputs.artifacts['endpoint'].uri}}",
+              "--init.project",
+              "{{$.inputs.parameters['project']}}",
+              "--method.endpoint",
+              "{{$.inputs.artifacts['endpoint'].uri}}",
+              "--init.model_name",
+              "{{$.inputs.artifacts['model'].uri}}"
+            ],
+            "command": [
+              "python3",
+              "-m",
+              "google_cloud_pipeline_components.aiplatform.remote_runner",
+              "--cls_name",
+              "Model",
+              "--method_name",
+              "deploy"
+            ],
+            "image": "gcr.io/ml-pipeline/google-cloud-pipeline-components:0.1.3"
+          }
+        },
+        "exec-model-upload": {
+          "container": {
+            "args": [
+              "--method.location",
+              "europe-west1",
+              "--method.display_name",
+              "movielens-trained-policy",
+              "--method.serving_container_image_uri",
+              "gcr.io/mlop-cg-data-and-insights/prediction-container:latest",
+              "--executor_input",
+              "{{$}}",
+              "--resource_name_output_artifact_uri",
+              "{{$.outputs.artifacts['model'].uri}}",
+              "--method.project",
+              "{{$.inputs.parameters['project']}}",
+              "--method.artifact_uri",
+              "{{$.inputs.parameters['artifact_uri']}}"
+            ],
+            "command": [
+              "python3",
+              "-m",
+              "google_cloud_pipeline_components.aiplatform.remote_runner",
+              "--cls_name",
+              "Model",
+              "--method_name",
+              "upload"
+            ],
+            "image": "gcr.io/ml-pipeline/google-cloud-pipeline-components:0.1.3"
+          }
+        },
+        "exec-training-op": {
+          "customJob": {
+            "customJob": {
+              "displayName": "training-op",
+              "jobSpec": {
+                "workerPoolSpecs": [
+                  {
+                    "containerSpec": {
+                      "imageUri": "python:3.7"
+                    },
+                    "machineSpec": {
+                      "acceleratorCount": "0",
+                      "acceleratorType": "ACCELERATOR_TYPE_UNSPECIFIED",
+                      "machineType": "n1-standard-4"
+                    },
+                    "replicaCount": "1"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "pipelineInfo": {
+      "name": "movie-prediction-startup"
+    },
+    "root": {
+      "dag": {
+        "tasks": {
+          "endpoint-create": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-endpoint-create"
+            },
+            "inputs": {
+              "parameters": {
+                "project": {
+                  "componentInputParameter": "project_id"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "endpoint-create"
+            }
+          },
+          "generate-movielens-dataset-for-bigquery": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-generate-movielens-dataset-for-bigquery"
+            },
+            "dependentTasks": [
+              "import-feature-values"
+            ],
+            "inputs": {
+              "parameters": {
+                "batch_size": {
+                  "componentInputParameter": "batch_size"
+                },
+                "bigquery_dataset_id": {
+                  "componentInputParameter": "bigquery_dataset_id"
+                },
+                "bigquery_location": {
+                  "componentInputParameter": "bigquery_location"
+                },
+                "bigquery_table_id": {
+                  "componentInputParameter": "bigquery_table_id"
+                },
+                "bigquery_tmp_file": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "stringValue": "tmp.json"
+                    }
+                  }
+                },
+                "driver_steps": {
+                  "componentInputParameter": "driver_steps"
+                },
+                "feature_id": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "featurestore_id",
+                    "producerTask": "import-feature-values"
+                  }
+                },
+                "num_actions": {
+                  "componentInputParameter": "num_actions"
+                },
+                "project_id": {
+                  "componentInputParameter": "project_id"
+                },
+                "rank_k": {
+                  "componentInputParameter": "rank_k"
+                },
+                "raw_data_path": {
+                  "componentInputParameter": "raw_data_path"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "generate-movielens-dataset-for-bigquery"
+            }
+          },
+          "import-feature-values": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-import-feature-values"
+            },
+            "dependentTasks": [
+              "load-raw-data-to-bigquery"
+            ],
+            "inputs": {
+              "parameters": {
+                "api_endpoint": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "stringValue": "europe-west3-aiplatform.googleapis.com"
+                    }
+                  }
+                },
+                "bigquery_table_id": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bigquery_table_id",
+                    "producerTask": "load-raw-data-to-bigquery"
+                  }
+                },
+                "bigquery_uri": {
+                  "componentInputParameter": "bigquery_uri"
+                },
+                "entity_id_field": {
+                  "componentInputParameter": "entity_id_field"
+                },
+                "entity_type_id": {
+                  "componentInputParameter": "entity_type_id"
+                },
+                "featurestore_id": {
+                  "componentInputParameter": "featurestore_id"
+                },
+                "location": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "stringValue": "europe-west3"
+                    }
+                  }
+                },
+                "project": {
+                  "componentInputParameter": "project_id"
+                },
+                "timeout": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "intValue": "500"
+                    }
+                  }
+                },
+                "worker_count": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "intValue": "1"
+                    }
+                  }
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "import-feature-values"
+            }
+          },
+          "ingest-bigquery-dataset-into-tfrecord": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-ingest-bigquery-dataset-into-tfrecord"
+            },
+            "dependentTasks": [
+              "generate-movielens-dataset-for-bigquery"
+            ],
+            "inputs": {
+              "parameters": {
+                "bigquery_max_rows": {
+                  "componentInputParameter": "bigquery_max_rows"
+                },
+                "bigquery_table_id": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bigquery_table_id",
+                    "producerTask": "generate-movielens-dataset-for-bigquery"
+                  }
+                },
+                "project_id": {
+                  "componentInputParameter": "project_id"
+                },
+                "tfrecord_file": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "stringValue": "gs://mlops-vertex-capgemini/trainer_input_path/tf"
+                    }
+                  }
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "ingest-bigquery-dataset-into-tfrecord"
+            }
+          },
+          "load-raw-data-to-bigquery": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-load-raw-data-to-bigquery"
+            },
+            "inputs": {
+              "parameters": {
+                "bigquery_dataset_id": {
+                  "componentInputParameter": "bigquery_dataset_id"
+                },
+                "bigquery_location": {
+                  "componentInputParameter": "bigquery_location"
+                },
+                "bigquery_table_id": {
+                  "componentInputParameter": "bigquery_raw_table_id"
+                },
+                "project_id": {
+                  "componentInputParameter": "project_id"
+                },
+                "raw_data_path": {
+                  "componentInputParameter": "raw_data_path"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "load-raw-data-to-bigquery"
+            }
+          },
+          "model-deploy": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-model-deploy"
+            },
+            "dependentTasks": [
+              "endpoint-create",
+              "model-upload"
+            ],
+            "inputs": {
+              "artifacts": {
+                "endpoint": {
+                  "taskOutputArtifact": {
+                    "outputArtifactKey": "endpoint",
+                    "producerTask": "endpoint-create"
+                  }
+                },
+                "model": {
+                  "taskOutputArtifact": {
+                    "outputArtifactKey": "model",
+                    "producerTask": "model-upload"
+                  }
+                }
+              },
+              "parameters": {
+                "project": {
+                  "componentInputParameter": "project_id"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "model-deploy"
+            }
+          },
+          "model-upload": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-model-upload"
+            },
+            "dependentTasks": [
+              "training-op"
+            ],
+            "inputs": {
+              "parameters": {
+                "artifact_uri": {
+                  "componentInputParameter": "training_artifacts_dir"
+                },
+                "project": {
+                  "componentInputParameter": "project_id"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "model-upload"
+            }
+          },
+          "training-op": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-training-op"
+            },
+            "dependentTasks": [
+              "ingest-bigquery-dataset-into-tfrecord"
+            ],
+            "inputs": {
+              "parameters": {
+                "agent_alpha": {
+                  "componentInputParameter": "agent_alpha"
+                },
+                "num_actions": {
+                  "componentInputParameter": "num_actions"
+                },
+                "num_epochs": {
+                  "componentInputParameter": "num_epochs"
+                },
+                "rank_k": {
+                  "componentInputParameter": "rank_k"
+                },
+                "tfrecord_file": {
+                  "runtimeValue": {
+                    "constantValue": {
+                      "stringValue": "gs://mlops-vertex-capgemini/trainer_input_path/tf"
+                    }
+                  }
+                },
+                "tikhonov_weight": {
+                  "componentInputParameter": "tikhonov_weight"
+                },
+                "training_artifacts_dir": {
+                  "componentInputParameter": "training_artifacts_dir"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "training-op"
+            }
+          }
+        }
+      },
+      "inputDefinitions": {
+        "parameters": {
+          "agent_alpha": {
+            "type": "DOUBLE"
+          },
+          "batch_size": {
+            "type": "INT"
+          },
+          "bigquery_dataset_id": {
+            "type": "STRING"
+          },
+          "bigquery_location": {
+            "type": "STRING"
+          },
+          "bigquery_max_rows": {
+            "type": "INT"
+          },
+          "bigquery_raw_table_id": {
+            "type": "STRING"
+          },
+          "bigquery_table_id": {
+            "type": "STRING"
+          },
+          "bigquery_uri": {
+            "type": "STRING"
+          },
+          "driver_steps": {
+            "type": "INT"
+          },
+          "entity_id_field": {
+            "type": "STRING"
+          },
+          "entity_type_id": {
+            "type": "STRING"
+          },
+          "featurestore_id": {
+            "type": "STRING"
+          },
+          "num_actions": {
+            "type": "INT"
+          },
+          "num_epochs": {
+            "type": "INT"
+          },
+          "project_id": {
+            "type": "STRING"
+          },
+          "rank_k": {
+            "type": "INT"
+          },
+          "raw_data_path": {
+            "type": "STRING"
+          },
+          "tikhonov_weight": {
+            "type": "DOUBLE"
+          },
+          "training_artifacts_dir": {
+            "type": "STRING"
+          }
+        }
+      }
+    },
+    "schemaVersion": "2.0.0",
+    "sdkVersion": "kfp-1.8.9"
+  },
+  "runtimeConfig": {
+    "gcsOutputDirectory": "gs://mlops-vertex-capgemini/pipeline",
+    "parameters": {
+      "agent_alpha": {
+        "doubleValue": 10.0
+      },
+      "batch_size": {
+        "intValue": "8"
+      },
+      "bigquery_max_rows": {
+        "intValue": "10000"
+      },
+      "driver_steps": {
+        "intValue": "3"
+      },
+      "num_actions": {
+        "intValue": "20"
+      },
+      "num_epochs": {
+        "intValue": "5"
+      },
+      "rank_k": {
+        "intValue": "20"
+      },
+      "tikhonov_weight": {
+        "doubleValue": 0.01
+      }
+    }
+  }
+}
