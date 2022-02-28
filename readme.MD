@@ -19,12 +19,16 @@ https://www.kaggle.com/prajitdatta/movielens-100k-dataset
 
 ### Steps:
 
-**Note:** Important to configure/install Google SDK previously and deploy all resources on same region (for example: europe-west3 - Frankfurt)
+**Note:** Important to configure/install Google SDK previously and deploy all resources on same region (for example: europe-west4 - Netherlands which has most of the services available)
 
-
-1. Deploy workbench Vertex AI
+1. Deploy workbench Vertex AI with following configuration (including 1 GPU)
 
 ![alt text](./pics/workbenchconf.png)
+
+2. Once deployed workbench machine then open jupyterlab environment 
+3. Open terminal and pull code from github
+4. Open iPython notebook locally on workbench environment
+5. Run each cell as it's written code on notebook
 
 **Authors:**
 
